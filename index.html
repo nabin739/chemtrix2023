@@ -174,10 +174,21 @@ box-shadow: 5px 5px 30px 7px rgba(0,0,0,0.25), -5px -5px 30px 7px rgba(0,0,0,0.2
 .it {
 	position: relative;
 	display: block;
-	width: 1100px;
-	height: 900px;
+	width: 1000px;
+	height: 750px;
 	overflow: hidden;
 	border-radius: 5px;
+}
+
+@media screen and (max-width: 700px) {
+    .it {
+	position: relative;
+	display: block;
+	width: 600px;
+	height: 500px;
+	overflow: hidden;
+	border-radius: 5px;
+}
 }
 
 .it:before, .it:after {

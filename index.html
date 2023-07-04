@@ -1,0 +1,1177 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <title>CHEMTRIX-23</title>
+
+        <!-- CSS FILES -->        
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        
+        <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;400;700&display=swap" rel="stylesheet">
+                
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+
+        <link href="css/bootstrap-icons.css" rel="stylesheet">
+
+        <link href="css/templatemo-festava-live.css" rel="stylesheet">
+        
+        <style>
+            /* .box {
+  width: 40%;
+  margin: 0 auto;
+  background: rgba(255,255,255,0.2);
+  padding: 35px;
+  border: 2px solid #fff;
+  border-radius: 20px/50px;
+  background-clip: padding-box;
+  text-align: center;
+} */
+
+.button {
+  font-size: 1em;
+  padding: 10px;
+  color: #fff;
+  border: 2px solid #06D85F;
+  border-radius: 20px/50px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease-out;
+}
+.button:hover {
+  background: #06D85F;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  transition: opacity 500ms;
+  visibility: hidden;
+  opacity: 0;
+}
+.overlay:target {
+  visibility: visible;
+  opacity: 1;
+}
+
+.popup {
+  margin: 70px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 5px;
+  width: 30%;
+  position: relative;
+  transition: all 5s ease-in-out;
+}
+
+.popup h2 {
+  margin-top: 0;
+  color: #333;
+  font-family: Tahoma, Arial, sans-serif;
+}
+.popup .close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  transition: all 200ms;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+}
+.popup .close:hover {
+  color: #06D85F;
+}
+.popup .content {
+  max-height: 30%;
+  overflow: auto;
+}
+
+@media screen and (max-width: 700px){
+  /* .box{
+    width: 70%;
+  } */
+  .popup{
+    width: 70%;
+  }
+}
+
+
+
+.cards-list {
+  z-index: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.card {
+  margin: 30px auto;
+  width: 300px;
+  height: 300px;
+  border-radius: 40px;
+box-shadow: 5px 5px 30px 7px rgba(0,0,0,0.25), -5px -5px 30px 7px rgba(0,0,0,0.22);
+  cursor: pointer;
+  transition: 0.4s;
+}
+
+.card .card_image {
+  width: inherit;
+  height: inherit;
+  border-radius: 40px;
+}
+
+.card .card_image img {
+  width: inherit;
+  height: inherit;
+  border-radius: 40px;
+  /* object-fit: cover; */
+}
+
+.card .card_title {
+  text-align: center;
+  border-radius: 0px 0px 40px 40px;
+  font-family: sans-serif;
+  font-weight: bold;
+  font-size: 30px;
+  margin-top: -80px;
+  height: 40px;
+}
+
+.card:hover {
+  transform: scale(0.9, 0.9);
+  box-shadow: 5px 5px 30px 15px rgba(0,0,0,0.25), 
+    -5px -5px 30px 15px rgba(0,0,0,0.22);
+}
+
+.title-white {
+  color: white;
+}
+
+.title-black {
+  color: black;
+}
+
+@media all and (max-width: 500px) {
+  .card-list {
+    /* On small screens, we are no longer using row direction but column */
+    flex-direction: column;
+  }
+}
+
+
+.it {
+	position: relative;
+	display: block;
+	width: 1100px;
+	height: 900px;
+	overflow: hidden;
+	border-radius: 5px;
+}
+
+.it:before, .it:after {
+	content: '<<';
+	position: absolute;
+	top: 50%;
+	left: 1rem;
+	z-index: 2;
+	width: 2rem;
+	height: 2rem;
+	background: dodgerblue;
+	color: white;
+	border-radius: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	pointer-events: none;
+}
+
+.it:after {
+	content: '>>';
+	left: auto;
+	right: 1rem;
+}
+
+/* I haven't found a way for IE and Edge to let me style inputs that way */
+input {
+	appearance: none;
+	-ms-appearance: none;
+	-webkit-appearance: none;
+	display: block;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	border-radius: 5px;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+	transform: translateX(100%);
+	transition: transform ease-in-out 400ms;
+	z-index: 1;
+}
+
+input:focus {
+	outline: none;
+}
+
+input:after {
+	content: attr(title);
+	position: absolute;
+	top: 1rem;
+	left: 1rem;
+	background-color: rgba(0,0,0,0.4);
+	color: white;
+	padding: .5rem;
+	font-size: 1rem;
+	border-radius: 5px;
+}
+
+input:not(checked):before {
+	content: '';
+	position: absolute;
+	width: 2rem;
+	height: 2rem;
+	border-radius: 50%;
+	top: 50%;
+	left: calc(-100% + 1rem);
+}
+
+input:checked:before {
+	display: none;
+	left: 1rem;
+}
+
+input:checked {
+	transform: translateX(0);
+	pointer-event: none;
+	z-index: 0;
+	box-shadow: -5px 10px 20px -15px rgba(0,0,0,1);
+}
+
+input:checked + input:before {
+	left: -3rem;
+}
+
+input:checked + input ~ input:before {
+	display: none;
+}
+
+
+        </style>
+    </head>
+    
+    <body>
+
+        <main>
+
+            <header class="site-header">
+                <div class="container">
+                    <div class="row">
+                        
+                        <div class="col-lg-12 col-12 d-flex flex-wrap">
+                            <p class="d-flex me-4 mb-0">
+                                <i class="bi-person custom-icon me-2"></i>
+                                <strong class="text-dark">Welcome to Chemtrix'23</strong>
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </header>
+
+
+            <nav class="navbar navbar-expand-lg">
+                <div class="container">
+                    <a class="navbar-brand" href="index.html">
+                        CHEMTRIX
+                    </a>
+
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLScPKV5IT_EY9H5TUydkM1KJqYUYYNN-Hrfq2iUQN4cJu4wnVw/viewform?usp=sf_link" class="btn custom-btn d-lg-none ms-auto me-4">Register Here</a>
+    
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+    
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav align-items-lg-center ms-auto me-lg-5">
+                            <li class="nav-item">
+                                <a class="nav-link click-scroll" href="#section_1">Home</a>
+                            </li>
+    
+                            <li class="nav-item">
+                                <a class="nav-link click-scroll" href="#section_2">About</a>
+                            </li>
+    
+                            <li class="nav-item">
+                                <a class="nav-link click-scroll" href="#section_3">Memento</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link click-scroll" href="#section_4">Events</a>
+                            </li>
+
+                            <!-- <li class="nav-item">
+                                <a class="nav-link click-scroll" href="#section_5">Pricing</a>
+                            </li> -->
+    
+                            <li class="nav-item">
+                                <a class="nav-link click-scroll" href="#section_6">Contact</a>
+                            </li>
+                        </ul>
+
+                        <a href="https://docs.google.com/forms/d/e/1FAIpQLScPKV5IT_EY9H5TUydkM1KJqYUYYNN-Hrfq2iUQN4cJu4wnVw/viewform?usp=sf_link" class="btn custom-btn d-lg-block d-none">Register Here</a>
+                    </div>
+                </div>
+            </nav>
+            
+
+            <section class="hero-section" id="section_1">
+                <div class="section-overlay"></div>
+
+                <div class="container d-flex justify-content-center align-items-center">
+                    <div class="row">
+
+                        <div class="col-12 mt-auto mb-5 text-center">
+                            <section><h2 style="color: #D9E3DA;">St.Joseph's College of Engineering</h2></section>
+                            <small> Department of Chemical Engineering Presents</small>
+                            <h1 style="color: #D9E3DA;">CHEMTRIX'23</h1>
+                            <h5 class="text-white mb-5">National Level Symposium 2023</h5>
+
+                            <a class="btn custom-btn smoothscroll" href="#section_2">Let's begin</a>
+                        </div>
+
+                        <div class="col-lg-12 col-12 mt-auto d-flex flex-column flex-lg-row text-center">
+                            <div class="date-wrap">
+                                <h5 class="text-white">
+                                    <i class="custom-icon bi-clock me-2"></i>
+                                    2<sup>nd</sup>, Sept 2023
+                                </h5>
+                            </div>
+
+                            <div class="location-wrap mx-auto py-3 py-lg-0">
+                                <h5 class="text-white">
+                                    <i class="custom-icon bi-geo-alt me-2"></i>
+                                    St.Joseph's College Of Engineering ,Chennai
+                                </h5>
+                            </div>
+
+                            <div class="social-share">
+                                <ul class="social-icon d-flex align-items-center justify-content-center">
+                                    <span class="text-white me-3">Share:</span>
+
+                                    <!-- <li class="social-icon-item">
+                                        <a href="#" class="social-icon-link">
+                                            <span class="bi-facebook"></span>
+                                        </a>
+                                    </li>
+
+                                    <li class="social-icon-item">
+                                        <a href="#" class="social-icon-link">
+                                            <span class="bi-twitter"></span>
+                                        </a>
+                                    </li> -->
+
+                                    <li class="social-icon-item">
+                                        <a href="https://instagram.com/chemtrix_23?igshid=MzNlNGNkZWQ4Mg==" class="social-icon-link">
+                                            <span class="bi-instagram"></span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-wrap">
+                    <video autoplay="" loop="" muted="" class="custom-video" poster="">
+                        <source src="video/chem38.mp4" type="video/mp4">
+
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </section>
+
+
+            <section class="about-section section-padding" id="section_2">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-lg-6 col-12 mb-4 mb-lg-0 d-flex align-items-center">
+                            <div class="services-info">
+                                <h2 class="text-white mb-4">About </h2>
+
+                                <p class="text-white">CHEMTRIX'23  is a highly anticipated and prestigious gathering that brings together students, faculty, and industry experts to engage in insightful discussions and knowledge sharing. This annual event serves as a platform for intellectual growth, where participants can explore emerging trends . With a diverse range of  keynote speeches, and interactive sessions, the CHEMTRIX'23 fosters a stimulating environment that encourages critical thinking, creativity, and networking opportunities. Students gain invaluable exposure to cutting-edge advancements in this field, while also showcasing their own talents and accomplishments. Overall, the CHEMTRIX'23 is a golden opportunity in enriching experience that contributes to the academic and professional development of everyone involved.</p>
+
+                                <h6 class="text-white mt-4">Your're cordly invited!!</h6>
+
+                                <p class="text-white">Join us in CHEMTRIX'23, a National level Technical Symposium. This symposium is organized by the Department of Chemical Engineering, St.Joseph's College of Engineering, on the 2nd of September 2023 from 8am to 3pm. Come, learn everything about research, development and recent trends in chemical engineering, from the industry's top professionals and also even get a chance to prove your worth to them!!!
+
+                                <!-- <h6 class="text-white mt-4">Whole Night Party</h6>
+
+                                <p class="text-white">Please tell your friends about our website. Thank you.</p> -->
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-8">
+                            <div class="about-text-wrap">
+                                <img src="images/clg pic.jpg" class="about-image img-fluid">
+
+                                <!-- <div class="about-text-info d-flex">
+                                    <div class="d-flex">
+                                        <i class="about-text-icon bi-person"></i>
+                                    </div> -->
+
+
+                                    <!-- <div class="ms-4">
+                                        <h3>a happy moment</h3>
+
+                                        <p class="mb-0">Enjoy your amazing experience with us</p>
+                                    </div> -->
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+
+            <section class="artists-section section-padding" id="section_3" style="background-color: #F2EAD3">
+                <div class="container">
+                    <div class="row justify-content-center">
+
+                        <div class="col-12 text-center">
+                            <h2 class="mb-4">Memento</h1>
+                        </div>
+
+
+                        <i class="it">
+                            <input checked type="radio" name="s" style="background-image: url('images/1.jpg');" title="">
+                            <input type="radio" name="s" style="background-image: url('images/2.jpg');" title="">
+                            <input type="radio" name="s" style="background-image: url('images/3.jpg');" title="">
+                            <input type="radio" name="s" style="background-image: url('images/7.jpg');" title="">
+                            <input type="radio" name="s" style="background-image: url('images/8.jpg');" title="">
+                            <input type="radio" name="s" style="background-image: url('images/9.jpg');" title="">
+                            <input type="radio" name="s" style="background-image: url('images/4.jpg');" title="">
+                            <input type="radio" name="s" style="background-image: url('images/6.jpg');" title="">
+                        </i>
+
+                        <!-- <div class="col-lg-5 col-12">
+                            <div class="artists-thumb">
+                                <div class="artists-image-wrap">
+                                    <img src="images/WhatsApp Image 2023-07-04 at 00.11.57.jpg" class="artists-image img-fluid">
+                                </div>
+                                <div class="artists-image-wrap">
+                                    <img src="images/1.jpg" class="artists-image img-fluid">
+                                </div> -->
+
+                                <!-- <div class="artists-hover">
+                                    <p>
+                                        <strong>Name:</strong>
+                                        Madona
+                                    </p>
+
+                                    <p>
+                                        <strong>Birthdate:</strong>
+                                        August 16, 1958
+                                    </p>
+
+                                    <p>
+                                        <strong>Music:</strong>
+                                        Pop, R&amp;B
+                                    </p>
+
+                                    <hr>
+
+                                    <p class="mb-0">
+                                        <strong>Youtube Channel:</strong>
+                                        <a href="#">Madona Official</a>
+                                    </p>
+                                </div> -->
+                            <!-- </div>
+                        </div> -->
+
+
+
+                        <!-- <div class="col-lg-5 col-12">
+                            <div class="artists-thumb">
+                                <div class="artists-image-wrap">
+                                    <img src="/images/WhatsApp Image 2023-07-04 at 00.14.17.jpg" class="artists-image img-fluid">
+                                </div> -->
+
+                                <!-- <div class="artists-hover">
+                                    <p>
+                                        <strong>Name:</strong>
+                                        Madona
+                                    </p>
+
+                                    <p>
+                                        <strong>Birthdate:</strong>
+                                        August 16, 1958
+                                    </p>
+
+                                    <p>
+                                        <strong>Music:</strong>
+                                        Pop, R&amp;B
+                                    </p>
+
+                                    <hr>
+
+                                    <p class="mb-0">
+                                        <strong>Youtube Channel:</strong>
+                                        <a href="#">Madona Official</a>
+                                    </p>
+                                </div> -->
+                            <!-- </div>
+                        </div> -->
+
+
+                        <!-- <div class="col-lg-5 col-12">
+                            <div class="artists-thumb">
+                                <div class="artists-image-wrap">
+                                    <img src="images/WhatsApp Image 2023-07-04 at 00.14.16.jpg" class="artists-image img-fluid">
+                                </div> -->
+
+                                
+
+                                <!-- <div class="artists-hover">
+                                    <p>
+                                        <strong>Name:</strong>
+                                        Rihana
+                                    </p>
+
+                                    <p>
+                                        <strong>Birthdate:</strong>
+                                        Feb 20, 1988
+                                    </p>
+
+                                    <p>
+                                        <strong>Music:</strong>
+                                        Country
+                                    </p>
+
+                                    <hr>
+
+                                    <p class="mb-0">
+                                        <strong>Youtube Channel:</strong>
+                                        <a href="#">Rihana Official</a>
+                                    </p>
+                                </div> -->
+                            <!-- </div>
+
+                            <div class="artists-thumb">
+                                <img src="images/WhatsApp Image 2023-07-04 at 00.11.56.jpg" class="artists-image img-fluid"> -->
+                                <!-- <img src="images/2.jpg" class="artists-image img-fluid">
+                                <img src="images/3.jpg" class="artists-image img-fluid"> -->
+
+                                <!-- <div class="artists-hover">
+                                    <p>
+                                        <strong>Name:</strong>
+                                        Bruno Bros
+                                    </p>
+
+                                    <p>
+                                        <strong>Birthdate:</strong>
+                                        October 8, 1985
+                                    </p>
+
+                                    <p>
+                                        <strong>Music:</strong>
+                                        Pop
+                                    </p>
+
+                                    <hr>
+
+                                    <p class="mb-0">
+                                        <strong>Youtube Channel:</strong>
+                                        <a href="#">Bruno Official</a>
+                                    </p>
+                                </div> -->
+                            <!-- </div>
+                        </div> -->
+
+                    </div>
+                </div>
+            </section>
+
+
+            <section class="schedule-section section-padding" id="section_4">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-12 text-center">
+                            <h2 class="text-white mb-4">Events</h1>
+
+                            <div class="table-responsive">
+                                <table class="schedule-table table table-dark">
+                                    <!-- <thead>
+                                        <tr>
+                                            <th scope="col">Date</th>
+
+                                            <th scope="col">Wednesday</th>
+
+                                            <th scope="col">Thursday</th>
+
+                                            <th scope="col">Friday</th>
+
+                                        </tr>
+                                    </thead> -->
+
+                                    <tbody>
+                                        <tr>
+                                            <!-- <th scope="row">Day 1</th> -->
+
+                                            <td >
+                                                <h3>CHEMRIDDLE</h3>
+
+                                                <!-- <p class="mb-2">5:00 - 7:00 PM</p> -->
+
+                                                <p>Event Coordinator: Ms.Mystery Pearly J</p>
+
+                                                <!-- <div class="section-overlay"></div> -->
+                                            </td>
+
+                                            <td style="background-color: #F3DCD4"></td>
+
+                                            <td>
+                                                <h3>CHEM CARNIVAL</h3>
+
+                                                <!-- <p class="mb-2">7:00 - 11:00 PM</p> -->
+
+                                                <p> Event Coordinator: Mr.Venkat K</p>
+
+                                                <!-- <div class="section-overlay"></div> -->
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <!-- <th scope="row">Day 2</th> -->
+                
+                                            <td style="background-color: #ECC9C7"></td>
+
+                                            <td>
+                                                <h3>ChemECipher</h3>
+
+                                                <!-- <p class="mb-2">6:30 - 9:30 PM</p> -->
+
+                                                <p> Event  Coordinator: Ms.Pradeepa K</p>
+                                            </td>
+
+                                            <td style="background-color: #D9E3DA"></td>
+                                        </tr>
+
+                                        <tr>
+                                            <!-- <th scope="row">Day 3</th> -->
+                
+                                            <td>
+                                                <h3>QUICK-O-CHEM</h3>
+
+                                                <!-- <p class="mb-2">4:30 - 7:30 PM</p> -->
+
+                                                <p>Event  Coordinator: Mr. Yugesh M</p>
+
+                                                <!-- <div class="section-overlay"></div> -->
+                                            </td>
+
+                                            <td style="background-color: #D1CFC0"></td>
+
+                                            <td>
+                                                <h3> ALCHEMY</h3>
+
+                                                <!-- <p class="mb-2">6:00 - 10:00 PM</p> -->
+
+                                                <p>Event  Coordinator: Mr. Kathiravan T</p>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="cards-list">
+                    <div class="box"> 
+                        <a class="button" href="#popup1">
+                    <div class="card 1">
+                      <div class="card_image"> <img src="images/Picsart_23-06-17_16-08-24-607.png" /> </div>
+                      <div class="card_title title-white">
+                        <p></p>
+                      </div>
+                    </div>
+                    </a>
+                    </div>
+
+
+                    <div id="popup1" class="overlay">
+                        <div class="popup">
+                            <h2>ChemRiddles Rules</h2>
+                            <a class="close" href="#section4">&times;</a>
+                            <div class="content">
+                                <ul>
+                                    <li>2 persons per team.</li>
+                                    <li>A technical quiz based on chemical engineering
+                                        subjects.</li>
+                                    <li>Round one: technical quiz.</li>
+                                    <li>Round two: CHEMTOGRAPH (explaining chemical
+                                        related terms or symbols by drawing only).</li>
+                                       <li> Round three: CHEMSHOT (rapid fire questions
+                                        with penalty)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="box"> 
+                        <a class="button" href="#popup2">
+                      <div class="card 2">
+                      <div class="card_image">
+                        <img src="images/cipher.jpg" />
+                        </div>
+                      <div class="card_title title-white">
+                        <p></p>
+                      </div>
+                    </div>
+                    </a>
+                    </div>
+
+                    <div id="popup2" class="overlay">
+                        <div class="popup">
+                            <h2>Chem-E-Cipher Rules</h2>
+                            <a class="close" href="#section4">&times;</a>
+                            <div class="content">
+                                <ul>
+                                   <li> 3 members per team.</li>
+                                   <li> Round 1: Decoding
+                                    (You will be given with
+                                    atomic and mass numbers
+                                    and you should decode
+                                    the numbers and find the compound
+                                    or elements).</li>
+                                    <li>>Round 2: Solution to a scenario (you will be
+                                    given with a scenario in an industry and few
+                                    minutes will be given for thinking solution).</li>
+                                    <li>Round 3: Puzzle (related to chemical
+                                    engineering).
+                                    Winners based on overall score in all three rounds</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="box"> 
+                        <a class="button" href="#popup3">
+                    <div class="card 3">
+                      <div class="card_image">
+                        <img src="images/CHEM CARNIVAL (1).png" />
+                      </div>
+                      <div class="card_title">
+                        <p></p>
+                      </div>
+                    </div>
+                    </a>
+                    </div>
+
+                    <div id="popup3" class="overlay">
+                        <div class="popup">
+                            <h2>QUICK-O-CHEM Rules</h2>
+                            <a class="close" href="#section4">&times;</a>
+                            <div class="content">
+                                <ul>
+                                    <li>2 to 4 persons per team.</li>
+                                    <li>Find the solution as fast as you can.</li>
+                                    <li>Round one: Prelims: Business with Chem.</li>
+                                    <li>Round two: Intermediate: You can't find me.</li>
+                                    <li>Round three: Advance: Go with the flow.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+                    <div class="box"> 
+                        <a class="button" href="#popup4">
+                    <div class="card 3">
+                      <div class="card_image">
+                        <img src="images/CHEM CARNIVAL.png" />
+                      </div>
+                      <div class="card_title">
+                        <p></p>
+                      </div>
+                    </div>
+                    </a>
+                    </div>
+
+
+                    <div id="popup4" class="overlay">
+                        <div class="popup">
+                            <h2>Chem Carnival Rules</h2>
+                            <a class="close" href="#section4">&times;</a>
+                            <div class="content">
+                                <ul>
+                                    <li>2 or 3 persons per team.</li>
+                                    <li>Find the solution for
+                                        chemistry and chemical
+                                        engineering topics with fun games.</li>
+                                    <li>Round one: Quiz with penalty.</li>
+                                    <li>Round two: Treasure hunt.</li>
+                                    <li>Round three: Minute to win it.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="box"> 
+                        <a class="button" href="#popup5">
+                      <div class="card 4">
+                      <div class="card_image">
+                        <img src="images/alchemy.jpg" />
+                        </div>
+                      <div class="card_title">
+                        <p></p>
+                      </div>
+                      </div>
+                      </a>
+                      </div>
+
+
+
+                      <div id="popup5" class="overlay">
+                        <div class="popup">
+                            <h2>Alchemy Rules</h2>
+                            <a class="close" href="#section4">&times;</a>
+                            <div class="content">
+                                <ul>
+                                    <li>
+                                        2 person per team</li>
+<li>Round one: Move the ball cup to cup.</li>
+<li>Round two: Pop the balloons and answer
+the quiz.</li>
+<li>Round three: Funny Quiz related to chemical
+engineering
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    </div>
+
+
+
+                <!-- <div class="box">
+	<a class="button" href="#popup1">Let me Pop up</a>
+</div> -->
+
+<!-- <div id="popup1" class="overlay">
+	<div class="popup">
+		<h2>Here i am</h2>
+		<a class="close" href="#section4">&times;</a>
+		<div class="content">
+			Thank to pop me out of that button, but now i'm done so you can close this window.
+		</div>
+	</div>
+</div> -->
+            </section>
+
+
+            <!-- <section class="pricing-section section-padding section-bg" id="section_5">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-lg-8 col-12 mx-auto">
+                            <h2 class="text-center mb-4">Plans, you' love</h2>
+                        </div>
+                        
+                        <div class="col-lg-6 col-12">
+                            <div class="pricing-thumb">
+                                <div class="d-flex">
+                                    <div>
+                                        <h3><small>Early Bird</small> $120</h3>
+
+                                        <p>Including good things:</p>
+                                    </div>
+
+                                    <p class="pricing-tag ms-auto">Save up to <span>50%</span></h2>
+                                </div>
+
+                                <ul class="pricing-list mt-3">
+                                    <li class="pricing-list-item">platform for potential customers</li>
+
+                                    <li class="pricing-list-item">digital experience</li>
+
+                                    <li class="pricing-list-item">high-quality sound</li>
+
+                                    <li class="pricing-list-item">standard content</li>
+                                </ul>
+
+                                <a class="link-fx-1 color-contrast-higher mt-4" href="ticket.html">
+                                    <span>Buy Ticket</span>
+                                    <svg class="icon" viewBox="0 0 32 32" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="16" cy="16" r="15.5"></circle><line x1="10" y1="18" x2="16" y2="12"></line><line x1="16" y1="12" x2="22" y2="18"></line></g></svg>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-12 mt-4 mt-lg-0">
+                            <div class="pricing-thumb">
+                                <div class="d-flex">
+                                    <div>
+                                        <h3><small>Standard</small> $240</h3>
+
+                                        <p>What makes a premium festava?</p>
+                                    </div>
+                                </div>
+
+                                <ul class="pricing-list mt-3">
+                                    <li class="pricing-list-item">platform for potential customers</li>
+
+                                    <li class="pricing-list-item">digital experience</li>
+
+                                    <li class="pricing-list-item">high-quality sound</li>
+
+                                    <li class="pricing-list-item">premium content</li>
+                                    
+                                    <li class="pricing-list-item">live chat support</li>
+                                </ul>
+
+                                <a class="link-fx-1 color-contrast-higher mt-4" href="ticket.html">
+                                    <span>Buy Ticket</span>
+                                    <svg class="icon" viewBox="0 0 32 32" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="16" cy="16" r="15.5"></circle><line x1="10" y1="18" x2="16" y2="12"></line><line x1="16" y1="12" x2="22" y2="18"></line></g></svg>
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section> -->
+
+
+            <section class="contact-section section-padding" id="section_6">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-lg-8 col-12 mx-auto">
+                            <h2 class="text-center mb-4">Move on to explore!!</h2>
+
+                            <nav class="d-flex justify-content-center">
+                                <div class="nav nav-tabs align-items-baseline justify-content-center" id="nav-tab" role="tablist">
+                                    <!-- <button class="nav-link active" id="nav-ContactForm-tab" data-bs-toggle="tab" data-bs-target="#nav-ContactForm" type="button" role="tab" aria-controls="nav-ContactForm" aria-selected="false">
+                                        <h5>Contact Form</h5>
+                                    </button> -->
+
+                                    <button class="nav-link" id="nav-ContactMap-tab" data-bs-toggle="tab" data-bs-target="#nav-ContactMap" type="button" role="tab" aria-controls="nav-ContactMap" aria-selected="false">
+                                        <h5>Google Maps</h5>
+                                    </button>
+                                </div>
+                            </nav>
+
+                            <!-- <div class="tab-content shadow-lg mt-5" id="nav-tabContent">
+                                <div class="tab-pane fade show active" id="nav-ContactForm" role="tabpanel" aria-labelledby="nav-ContactForm-tab">
+                                    <form class="custom-form contact-form mb-5 mb-lg-0" action="#" method="post" role="form">
+                                        <div class="contact-form-body">
+                                            <div class="row">
+                                                <div class="col-lg-6 col-md-6 col-12">
+                                                    <input type="text" name="contact-name" id="contact-name" class="form-control" placeholder="Full name" required>
+                                                </div>
+
+                                                <div class="col-lg-6 col-md-6 col-12">
+                                                    <input type="email" name="contact-email" id="contact-email" pattern="[^ @]*@[^ @]*" class="form-control" placeholder="Email address" required>
+                                                </div>
+                                            </div>
+
+                                            <input type="text" name="contact-company" id="contact-company" class="form-control" placeholder="Company" required>
+
+                                            <textarea name="contact-message" rows="3" class="form-control" id="contact-message" placeholder="Message"></textarea>
+
+                                            <div class="col-lg-4 col-md-10 col-8 mx-auto">
+                                                <button type="submit" class="form-control">Send message</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div> -->
+
+                                <div class="tab-pane fade" id="nav-ContactMap" role="tabpanel" aria-labelledby="nav-ContactMap-tab">
+                                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3889.5849052420426!2d80.2223246!3d12.8700655!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a525bbeb0b2eeb7%3A0x2cb8fc0ae9b16ed5!2sSt%20Joseph&#39;s%20College%20Of%20Engineering!5e0!3m2!1sen!2ssg!4v1688411506998!5m2!1sen!2ssg" width="350" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>                                    <!-- You can easily copy the embed code from Google Maps -> Share -> Embed a map // -->
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+        </main>
+
+
+        <footer class="site-footer">
+            <div class="site-footer-top">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-lg-6 col-12">
+                            <h2 class="text-white mb-lg-0">Chemtrix'23</h2>
+                        </div>
+
+                        <div class="col-lg-6 col-12 d-flex justify-content-lg-end align-items-center">
+                            <ul class="social-icon d-flex justify-content-lg-end">
+                                <!-- <li class="social-icon-item">
+                                    <a href="#" class="social-icon-link">
+                                        <span class="bi-twitter"></span>
+                                    </a>
+                                </li>
+    
+                                <li class="social-icon-item">
+                                    <a href="#" class="social-icon-link">
+                                        <span class="bi-apple"></span>
+                                    </a>
+                                </li> -->
+    
+                                <li class="social-icon-item">
+                                    <a href="#" class="social-icon-link">
+                                        <span class="bi-instagram"></span>
+                                    </a>
+                                </li>
+
+                                <!-- <li class="social-icon-item">
+                                    <a href="#" class="social-icon-link">
+                                        <span class="bi-youtube"></span>
+                                    </a>
+                                </li>
+
+                                <li class="social-icon-item">
+                                    <a href="#" class="social-icon-link">
+                                        <span class="bi-pinterest"></span>
+                                    </a>
+                                </li> -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="row">
+
+                    <!-- <div class="col-lg-6 col-12 mb-4 pb-2">
+                        <h5 class="site-footer-title mb-3">Links</h5>
+
+                        <ul class="site-footer-links">
+                            <li class="site-footer-link-item">
+                                <a href="#" class="site-footer-link">Home</a>
+                            </li>
+
+                            <li class="site-footer-link-item">
+                                <a href="#" class="site-footer-link">About</a>
+                            </li>
+
+                            <li class="site-footer-link-item">
+                                <a href="#" class="site-footer-link">Artists</a>
+                            </li>
+
+                            <li class="site-footer-link-item">
+                                <a href="#" class="site-footer-link">Schedule</a>
+                            </li>
+
+                            <li class="site-footer-link-item">
+                                <a href="#" class="site-footer-link">Pricing</a>
+                            </li>
+
+                            <li class="site-footer-link-item">
+                                <a href="#" class="site-footer-link">Contact</a>
+                            </li>
+                        </ul>
+                    </div> -->
+
+                    <div class="col-lg-3 col-md-6 col-12 mb-4 mb-lg-0">
+                        <h5 class="site-footer-title mb-3">For more queries:</h5>
+
+                        <p class="text-white d-flex mb-1">
+                            <a href="tel: +91 6383941696" class="site-footer-link">
+                                +91 6383941696
+                            </a>
+                        </p>
+
+                        <p class="text-white d-flex">
+                            <a href="mailto:nabinsudhar@gmail.com" class="site-footer-link">
+                                nabinsudhar@gmail.com
+                            </a>
+                        </p>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 col-11 mb-4 mb-lg-0 mb-md-0">
+                        <h5 class="site-footer-title mb-3">Location</h5>
+
+                        <p class="text-white d-flex mt-3 mb-2">
+                        Old Mahabalipuram Road, Kamaraj Nagar, Semmancheri, Chennai, Tamil Nadu</p>
+
+                        <a class="link-fx-1 color-contrast-higher mt-3" href="#">
+                            <span>Our Maps</span>
+                            <svg class="icon" viewBox="0 0 32 32" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="16" cy="16" r="15.5"></circle><line x1="10" y1="18" x2="16" y2="12"></line><line x1="16" y1="12" x2="22" y2="18"></line></g></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- <div class="site-footer-bottom">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-lg-3 col-12 mt-5">
+                            <p class="copyright-text">Copyright © 2036 Festava Live Company</p>
+                        </div>
+
+                        <div class="col-lg-8 col-12 mt-lg-5">
+                            <ul class="site-footer-links">
+                                <li class="site-footer-link-item">
+                                    <a href="#" class="site-footer-link">Terms &amp; Conditions</a>
+                                </li>
+
+                                <li class="site-footer-link-item">
+                                    <a href="#" class="site-footer-link">Privacy Policy</a>
+                                </li>
+
+                                <li class="site-footer-link-item">
+                                    <a href="#" class="site-footer-link">Your Feedback</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+        </footer>
+
+<!--
+
+T e m p l a t e M o
+
+-->
+
+        <!-- JAVASCRIPT FILES -->
+        <script src="js/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/jquery.sticky.js"></script>
+        <script src="js/click-scroll.js"></script>
+        <script src="js/custom.js"></script>
+
+    </body>
+</html>
